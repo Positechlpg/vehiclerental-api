@@ -62,7 +62,7 @@ server.post("/login", (req, res) => {
   const {
     body: { email, password },
   } = req;
-  const sqlQuery = `SELECT * FROM users (username, email,password,phone,adress,birthday,displayname,image) WHERE email = '${email}' LIMIT 1`;
+  const sqlQuery = `SELECT * FROM users  WHERE email = '${email}' LIMIT 1`;
   db.query(sqlQuery, (err, result) => {
     const user = result[0];
     if (err) return res.json({ msg: "Terjadi Error", err });
@@ -128,11 +128,6 @@ server.post("/editusers/:id", (req, res) => {
   const {
     body: { username, email, password, phone, adress, birthday, displayname, image },
   } = req;
-  
-
-  // if (pathParams !== "id") {
-  //   return res.status(404).json({ msg: "Hasil Tidak Ditemukan", result: [] });
-  // }
   const sqlQuery = `UPDATE users SET username = "${username}", email= "${email}",password ="${password}",phone = "${phone}",adress = "${adress}",birthday = "${birthday}",displayname = "${displayname}", image = "${image}" WHERE id = ${id};`;
   db.query(sqlQuery, (err, result) => {
     if (err) return res.status(500).json({ msg: "Terjadi Error", err });
