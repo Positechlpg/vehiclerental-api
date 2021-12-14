@@ -6,7 +6,10 @@ const getAllVehicle = async (req, res) => {
 }
 
 const createVehicle = async (req, res) => {
-    httpResponse(res, await services.createVehicle(req.body));
+    const image = `${process.env.IMAGE_HOST}${req.file.filename}`; 
+    const body = req.body;
+    body.photo = image;
+    httpResponse(res, await services.createVehicle(body));
 }
 
 const getVehicleById = async (req,res) => {
@@ -16,7 +19,12 @@ const getVehicleById = async (req,res) => {
 
 const updateVehicle = async (req,res) => {
     const {vehicleId} = req.params
-    httpResponse(res, await services.updateVehicle(vehicleId,req.body))
+    const body = req.body;
+    if(req.file){
+        const image = `${process.env.IMAGE_HOST}${req.file.filename}`; 
+        body.photo = image;
+    }
+    httpResponse(res, await services.updateVehicle(vehicleId,body))
 }
 
 const getVehicleByType = async (req,res) => {

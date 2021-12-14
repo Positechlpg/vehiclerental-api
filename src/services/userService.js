@@ -22,35 +22,14 @@ const getUser = async (userId) =>{
     }
 }
 
-const login = async (body)=>{
-    const { email, password } = body;
-    try {
-        const result = await UserModel.login(email)
-        const user = result[0];
-        if (user.password !== password) return ServiceResponse(null,400,"pasword salah")
-        return ServiceResponse(user,200, "berhasil login")
-    } catch (error) {
-        return ServiceResponse(null, 500, 'Terjadi Error', error)
-        
-    }
-}
-const createUser = async (body) =>{
-    const  {username, email, password, phone, adress, birthday, displayname, image }=body
-    try {
-        const result = await UserModel.createUser(username, email, password, phone, adress, birthday, displayname, image)
-        return ServiceResponse(result,200, "create succes")
-    } catch (error) {
-        return ServiceResponse(null, 500, 'Terjadi Error', error)
-        
-    }
-}
+
 
 const updateUser = async (userId,body) =>{
-    const { username, email, password, phone, adress, birthday, displayname, image } = body
+    const { username, email, phone, adress, birthday, displayname, image } = body
 
     try { 
         await UserModel.updateUser(userId,body);
-        const data ={ username, email, password, phone, adress, birthday, displayname, image }
+        const data ={ username, email, phone, adress, birthday, displayname, image }
         return ServiceResponse(data, 200)
     } catch (error) {
         return ServiceResponse(null, 500, 'Terjadi Error', error)
@@ -65,4 +44,4 @@ const deleteUser = async (userId) =>{
     }
 }
 
-module.exports = { getAllCustommer, login, createUser, getUser,updateUser,deleteUser };
+module.exports = { getAllCustommer, getUser,updateUser,deleteUser };

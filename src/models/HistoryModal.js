@@ -50,8 +50,8 @@ const updateHistory = (historyId,body) => {
 
 const deleteHistory = (historyId) => {
     return new Promise ((resolve,reject) =>{
-        const sqlQuery = `DELETE FROM history WHERE id = ${historyId} `;
-        db.query(sqlQuery, (error, result) => {
+        // const sqlQuery = `DELETE FROM history WHERE id = ${historyId} `;
+        db.query('DELETE FROM history WHERE id = ?',[historyId], (error, result) => {
             if (!error) {
                 resolve(result);
             } else {
@@ -63,8 +63,8 @@ const deleteHistory = (historyId) => {
 
 const getPopulerVhicle = (location) => {
     return new Promise((resolve, reject) => {
-        const sqlQuery = `SELECT COUNT(history.id) as total_history, vehicle.*  FROM vehicle LEFT JOIN history ON history.vehicle_id = vehicle.id WHERE vehicle.location = '${location}' GROUP BY vehicle.id ORDER BY total_history DESC;`;
-        db.query(sqlQuery, (error, result) => {
+        // const sqlQuery = `SELECT COUNT(history.id) as total_history, vehicle.*  FROM vehicle LEFT JOIN history ON history.vehicle_id = vehicle.id WHERE vehicle.location = '${location}' GROUP BY vehicle.id ORDER BY total_history DESC;`;
+        db.query('SELECT COUNT(history.id) as total_history, vehicle.*  FROM vehicle LEFT JOIN history ON history.vehicle_id = vehicle.id WHERE vehicle.location = ? GROUP BY vehicle.id ORDER BY total_history DESC;',[location], (error, result) => {
             if (!error) {
                 resolve(result);
             } else {

@@ -2,8 +2,8 @@ const db = require("../config/db");
 
 const getAllUser = () => {
     return new Promise((resolve, reject) => {
-        const sqlQuery = "SELECT * FROM users";
-        db.query(sqlQuery, (error, result) => {
+        // const sqlQuery = "SELECT * FROM users";
+        db.query('SELECT * FROM users', (error, result) => {
             if (!error) {
                 resolve(result);
             } else {
@@ -16,8 +16,8 @@ const getAllUser = () => {
 
 const getUser = (userId) => {
     return new Promise ((resolve,reject) =>{
-        const sqlQuery = `SELECT * FROM users WHERE id = ${userId} LIMIT 1`;
-        db.query(sqlQuery, (error, result) => {
+        // const sqlQuery = `SELECT * FROM users WHERE id = ${userId} LIMIT 1`;
+        db.query('SELECT * FROM users WHERE id = ?',[userId], (error, result) => {
             if (!error) {
                 resolve(result);
             } else {
@@ -27,37 +27,13 @@ const getUser = (userId) => {
     })
 }
 
-const login = (email) => {
-    return new Promise((resolve, reject) => {
-        const sqlQuery = `SELECT * FROM users  WHERE email = '${email}' LIMIT 1`;
-        db.query(sqlQuery, (error, result) => {
-            if (!error) {
-                resolve(result)
-            } else {
-                reject(error)
-            }
 
-        });
-    })
-}
-const createUser = (username, email, password, phone, adress, birthday, displayname, image) => {
-    return new Promise((resolve, reject) => {
-        const sqlQuery = `INSERT INTO users (username, email,password,phone,adress,birthday,displayname,image) VALUES ("${username}","${email}","${password}","${phone}", "${adress}","${birthday}","${displayname}","${image}")`;
-        db.query(sqlQuery, (error, result) => {
-            if (!error) {
-                resolve(result)
-            } else {
-                reject(error)
-            }
-        })
-    });
-}
 
 const updateUser = (userId,body) => {
-    const { username, email, password, phone, adress, birthday, displayname, image } = body
+    const { username, phone, adress, birthday, displayname, image } = body
     return new Promise ((resolve,reject) =>{
-        const sqlQuery = `UPDATE users SET username = "${username}", email= "${email}",password ="${password}",phone = "${phone}",adress = "${adress}",birthday = "${birthday}",displayname = "${displayname}", image = "${image}" WHERE id = ${userId};`;
-        db.query(sqlQuery, (error, result) => {
+        // const sqlQuery = `UPDATE users SET username = "${username}", email= "${email}",phone = "${phone}",address = "${adress}",birthday = "${birthday}",displayname = "${displayname}", image = "${image}" WHERE id = ${userId};`;
+        db.query('UPDATE users SET username = ? ,phone = ? ,address = ? ,birthday = ?, displayname = ?, image = ?  WHERE id = ?',[username, phone, adress, birthday, displayname, image,userId], (error, result) => {
             if (!error) {
                 resolve(result);
             } else {
@@ -69,8 +45,8 @@ const updateUser = (userId,body) => {
 
 const deleteUser = (userId) => {
     return new Promise ((resolve,reject) =>{
-        const sqlQuery = `DELETE FROM users WHERE id = ${userId} `;
-        db.query(sqlQuery, (error, result) => {
+        // const sqlQuery = `DELETE FROM users WHERE id = ${userId} `;
+        db.query('DELETE FROM users WHERE id = ?',[userId], (error, result) => {
             if (!error) {
                 resolve(result);
             } else {
@@ -80,4 +56,4 @@ const deleteUser = (userId) => {
     })
 }
 
-module.exports = { getAllUser, login, createUser, getUser,updateUser, deleteUser }
+module.exports = { getAllUser, getUser,updateUser, deleteUser }

@@ -1,14 +1,15 @@
 const express = require('express')
 const userRouter = express.Router()
 const userController = require('./../controllers/userControler')
+const {checkToken} = require('../middleware/authentication')
+const {checkRoleAdmin} = require('../middleware/authorization')
+const {fileUpload} = require('../middleware/upload')
 
 
 userRouter
-        .get('/', userController.getAllCustommer)
-        .get('/:userId', userController.getUser)
-        .patch('/:userId', userController.updateUser)
-        .post('/login', userController.login)
-        .post('/createuser', userController.createUser)
-        .delete('/:userId',userController.deleteUser)
+        .get('/',checkToken, userController.getAllCustommer)
+        .get('/:userId',checkToken, userController.getUser)
+        .patch('/:userId',checkToken, fileUpload, userController.updateUser)
+        .delete('/:userId',checkToken, checkRoleAdmin, userController.deleteUser)
 
 module.exports = userRouter
