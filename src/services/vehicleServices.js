@@ -5,11 +5,11 @@ const pagination = require('./../helper/pagination')
 const getAllVehicle = async (queryString) => {
     try {
         const limit =  parseInt(queryString.per_page)
-        const offset = (queryString.page * limit) - limit;
+        const offset = parseInt(queryString.page * limit) - limit;
         const vehicle = await vehicleModel.getAllVehicle({...queryString,limit,offset});
         const total = (await vehicleModel.getTotalVehicle(queryString))[0].total ?? 0
         console.log(total)
-        return pagination(vehicle,total,limit,offset, 200,"success pagination")
+        return pagination(vehicle,queryString, total,limit,offset, 200,"success pagination")
     } catch (error) {
         return ServiceResponse(null, 500, 'Terjadi Error', error)
     }

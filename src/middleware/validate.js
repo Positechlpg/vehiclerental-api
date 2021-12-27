@@ -3,7 +3,7 @@ const httpResponse = require("../helper/httpResponse");
 const register = (req, res, next) => {
   // validasi body
   const { body } = req;
-  const registerBody = ["username", "email", "password", "phone","adress","birthday","displayname"];
+  const registerBody = ["username", "email", "password"];
   const bodyProperty = Object.keys(body);
   const isBodyValid =
     registerBody.filter((property) => !bodyProperty.includes(property))

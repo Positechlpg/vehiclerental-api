@@ -24,11 +24,12 @@ const getUser = async (userId) =>{
 
 
 
-const updateUser = async (userId,body) =>{
+const updateUser = async (id,body) =>{
     const { username, email, phone, adress, birthday, displayname, image } = body
+    console.log(body)
 
     try { 
-        await UserModel.updateUser(userId,body);
+        await UserModel.updateUser(id,body);
         const data ={ username, email, phone, adress, birthday, displayname, image }
         return ServiceResponse(data, 200)
     } catch (error) {

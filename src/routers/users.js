@@ -8,7 +8,7 @@ const {fileUpload} = require('../middleware/upload')
 
 userRouter
         .get('/',checkToken, userController.getAllCustommer)
-        .get('/:userId',checkToken, userController.getUser)
+        .get('/profile',checkToken, userController.getUser)
         .patch('/:userId',checkToken, fileUpload, userController.updateUser)
         .delete('/:userId',checkToken, checkRoleAdmin, userController.deleteUser)
 

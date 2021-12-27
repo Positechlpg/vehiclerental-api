@@ -10,7 +10,7 @@ const login = async (body)=>{
         const result = await authModel.login(email)
         const user = result[0];
         const isValid = await bcrypt.compare(password, user.password);
-        if (!isValid) return ServiceResponse(null,400,"pasword wrong")
+        if (!isValid) return ServiceResponse(null,400,"email/pasword wrong")
         const payload = {
             id: user.id,
             name: user.name,
@@ -28,10 +28,13 @@ const login = async (body)=>{
     }
 }
 const createUser = async (body) =>{
-    const  {username, email, password, phone, adress, birthday, displayname, image }=body
+    const  {username, email, password }=body
     try {
+        const cekEmail = await authModel.cekEmail(email)
+        console.log(cekEmail)
+        if(cekEmail.length > 0 ) return ServiceResponse(null,400,"email already used ")
         const passwordHash = await bcrypt.hash(password, 10)
-        const result = await authModel.createUser(username, email, passwordHash, phone, adress, birthday, displayname, image)
+        const result = await authModel.createUser(username, email, passwordHash)
         return ServiceResponse(result,200, "sign up succes")
     } catch (error) {
         return ServiceResponse(null, 500, 'Terjadi Error', error)

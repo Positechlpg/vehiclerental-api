@@ -1,27 +1,48 @@
 const services = require('../services/historyService.js')
 const httpResponse = require('../helper/httpResponse')
+const ServiceResponse = require('../helper/ServiceResponse')
 
 const getAllHistory = async (req, res) => {
-    httpResponse(res, await services.getAllHistory(req.query));
+    try {
+        httpResponse(res, await services.getAllHistory(req.query));
+    } catch (error) {
+        return ServiceResponse(null, 500, 'Terjadi Error', error)
+    }
 }
 
 const createHistory = async (req, res) => {
-    httpResponse(res, await services.createHistory(req.body));
+    try {
+        httpResponse(res, await services.createHistory(req.body));
+    } catch (error) {
+        return ServiceResponse(null, 500, 'Terjadi Error', error)
+    }
 }
 
-const updateHistory = async (req,res) => {
-    const {historyId} = req.params
-    httpResponse(res, await services.updateHistory(historyId,req.body))
+const updateHistory = async (req, res) => {
+    try {
+        const { historyId } = req.params
+        httpResponse(res, await services.updateHistory(historyId, req.body))
+    } catch (error) {
+        return ServiceResponse(null, 500, 'Terjadi Error', error)
+    }
 }
 
-const deleteHistory = async (req,res) => {
-    const {historyId} = req.params
-    httpResponse(res, await services.deleteHistory(historyId))
+const deleteHistory = async (req, res) => {
+    try {
+        const { historyId } = req.params
+        httpResponse(res, await services.deleteHistory(historyId))
+    } catch (error) {
+        return ServiceResponse(null, 500, 'Terjadi Error', error)
+    }
 }
 
-const getPopulerVhicle = async (req,res) => {
-    const {location} = req.params
-    httpResponse(res, await services.getPopulerVhicle(location))
+const getPopulerVhicle = async (req, res) => {
+    try {
+        const { location } = req.params
+        httpResponse(res, await services.getPopulerVhicle(location))
+    } catch (error) {
+        return ServiceResponse(null, 500, 'Terjadi Error', error)
+    }
 }
 
-module.exports = {getAllHistory, createHistory,updateHistory,deleteHistory,getPopulerVhicle}
+module.exports = { getAllHistory, createHistory, updateHistory, deleteHistory, getPopulerVhicle }
