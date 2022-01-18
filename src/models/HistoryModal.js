@@ -20,9 +20,9 @@ const getAllHistory = (queryString) => {
     })
 }
 
-const createHistory = (userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status) => {
+const createHistory = (userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status,total_price) => {
     return new Promise((resolve, reject) => {
-        const sqlQuery = `INSERT INTO history (user_id, vehicle_id, quantity_total, start_date, return_date, booking_code, payment_code, status) VALUES ("${userId}","${vehicleId}","${quantityTotal}","${startDate}", "${returnDate}","${bookingCode}","${paymentCode}","${status}")`;
+        const sqlQuery = `INSERT INTO history (user_id, vehicle_id, quantity_total, start_date, return_date, booking_code, payment_code, status,total_price) VALUES ("${userId}","${vehicleId}","${quantityTotal}","${startDate}", "${returnDate}","${bookingCode}","${paymentCode}","${status}","${total_price}")`;
         db.query(sqlQuery, (error, result) => {
             if (!error) {
                 resolve(result);
@@ -35,9 +35,9 @@ const createHistory = (userId, vehicleId, quantityTotal, startDate, returnDate, 
 }
 
 const updateHistory = (historyId,body) => {
-    const { userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status } = body 
+    const { userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status,total_price } = body 
     return new Promise ((resolve,reject) =>{
-        const sqlQuery = `UPDATE history SET user_id = "${userId}", vehicle_id= "${vehicleId}",quantity_total ="${quantityTotal}",start_date = "${startDate}",return_date = "${returnDate}",booking_code = "${bookingCode}",payment_code = "${paymentCode}", status = "${status}" WHERE id = ${historyId};`;
+        const sqlQuery = `UPDATE history SET user_id = "${userId}", vehicle_id= "${vehicleId}",quantity_total ="${quantityTotal}",start_date = "${startDate}",return_date = "${returnDate}",booking_code = "${bookingCode}",payment_code = "${paymentCode}", status = "${status}", total_price = "${total_price}" WHERE id = ${historyId};`;
         db.query(sqlQuery, (error, result) => {
             if (!error) {
                 resolve(result);

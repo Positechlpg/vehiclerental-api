@@ -12,10 +12,10 @@ const getAllHistory = async (queryString) => {
 }
 
 const createHistory = async (body) => {
-    const  {userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status }=body
+    const  {userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status,total_price }=body
 
     try {
-         const result =await historyModel.createHistory(userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status);
+         const result =await historyModel.createHistory(userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status,total_price);
         return ServiceResponse(result, 200)
     } catch (error) {
         return ServiceResponse(null, 500, 'Terjadi Error', error)
@@ -23,10 +23,10 @@ const createHistory = async (body) => {
 }
 
 const updateHistory = async (historyId,body)=> {
-    const { userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status } = body
+    const { userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status,total_price } = body
     try {
         await historyModel.updateHistory(historyId, body);
-        const data = { userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status }
+        const data = { userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status,total_price }
         return ServiceResponse(data, 200)
     } catch (error) {
         return ServiceResponse(null, 500, 'Terjadi Error', error)

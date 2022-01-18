@@ -17,11 +17,11 @@ const login = async (body)=>{
             role: user.role
           };
         const jwtOptions = {
-            expiresIn: "5m",
+            expiresIn: "5h",
           };
           const token = jwt.sign(payload, process.env.SECRET_KEY, jwtOptions);
           await authModel.insertWhiteList(token)
-          return ServiceResponse({token},200, "login success")
+          return ServiceResponse({user:payload, token},200, "login success")
     } catch (error) {
         return ServiceResponse(null, 500, 'Terjadi Error', error)
         

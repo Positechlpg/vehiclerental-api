@@ -10,7 +10,7 @@ const checkToken = async (req, res, next) => {
   //     issuer: process.env.ISSUER,
   //   };
   jwt.verify(token, process.env.SECRET_KEY,(err, payload) => {
-    if (err) return httpResponse(res, { status: 403, message: "token invalid" });
+    if (err) return httpResponse(res, { status: 403, message: "token expired" });
     const { id, name, role } = payload;
     req.userInfo = { id, name, role };
     next();

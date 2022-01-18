@@ -23,13 +23,13 @@ const getUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     try {
-        const token = req.header("x-access-token");
-        const {id} = jwt.decode(token);
-        const image = `${process.env.IMAGE_HOST}${req.file.filename}`;
+        const {id} = req.userInfo
         const body = req.body;
-        console.log(body)
-        body.image = image;
-        httpResponse(res, await services.updateUser(id, body))
+        if (req.file) {
+            const image = `${process.env.IMAGE_HOST}${req.file.filename}`;
+            body.image = encodeURI(image);
+        }
+        return httpResponse(res, await services.updateUser(id, body))
     } catch (error) {
         return ServiceResponse(null, 500, 'Terjadi Error', error)
     }

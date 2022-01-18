@@ -24,13 +24,19 @@ const getUser = async (userId) =>{
 
 
 
-const updateUser = async (id,body) =>{
-    const { username, email, phone, adress, birthday, displayname, image } = body
-    console.log(body)
-
+const updateUser = async (id, body) =>{
+    console.log('hhhhh');
+    const user = await UserModel.getUser(id);
+    if(user.length ===0){
+        return ServiceResponse(null,404,'not found')
+    }
+    const newBody = {
+        ...user[0],
+        ...body
+    }
     try { 
-        await UserModel.updateUser(id,body);
-        const data ={ username, email, phone, adress, birthday, displayname, image }
+        await UserModel.updateUser(id, newBody);
+        const data = newBody
         return ServiceResponse(data, 200)
     } catch (error) {
         return ServiceResponse(null, 500, 'Terjadi Error', error)

@@ -9,6 +9,6 @@ historyRouter
         .post('/createhistory',checkToken,historyController.createHistory)
         .put('/:historyId',checkToken,historyController.updateHistory)
         .delete('/:historyId',checkToken, checkRoleAdmin, historyController.deleteHistory)
-        .get('/:location',checkToken, historyController.getPopulerVhicle)
+        .get('/:location', historyController.getPopulerVhicle)
 
 module.exports = historyRouter

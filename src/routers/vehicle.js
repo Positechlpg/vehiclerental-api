@@ -7,11 +7,11 @@ const {fileUpload} = require('../middleware/upload')
 
 
 vehicleRouter
-        .get('/', checkToken, vehicleControler.getAllVehicle)
+        .get('/',  vehicleControler.getAllVehicle)
         .post('/createVehicle', checkToken, checkRoleAdmin, fileUpload, vehicleControler.createVehicle)
-        .get('/:vehicleId', checkToken, vehicleControler.getVehicleById)
+        .get('/:vehicleId',  vehicleControler.getVehicleById)
         .patch('/:vehicleId', checkToken, checkRoleAdmin, fileUpload, vehicleControler.updateVehicle)
-        .get('/type/:type', checkToken, vehicleControler.getVehicleByType)
+        .get('/type/:type',  vehicleControler.getVehicleByType)
         .delete('/:vehicleId', checkToken, checkRoleAdmin, vehicleControler.deleteVehicle)
 
 

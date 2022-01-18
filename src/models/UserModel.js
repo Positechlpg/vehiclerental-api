@@ -30,10 +30,10 @@ const getUser = (userId) => {
 
 
 const updateUser = (userId,body) => {
-    const { username, phone, adress, birthday, displayname, image } = body
+    const { username, phone, address, birthday, displayname, image } = body
     return new Promise ((resolve,reject) =>{
         // const sqlQuery = `UPDATE users SET username = "${username}", email= "${email}",phone = "${phone}",address = "${adress}",birthday = "${birthday}",displayname = "${displayname}", image = "${image}" WHERE id = ${userId};`;
-        db.query('UPDATE users SET username = ? ,phone = ? ,address = ? ,birthday = ?, displayname = ?, image = ?  WHERE id = ?',[username, phone, adress, birthday, displayname, image,userId], (error, result) => {
+        db.query('UPDATE users SET username = ? ,phone = ? ,address = ? ,birthday = ?, displayname = ?, image = ?  WHERE id = ?',[username, phone, address, birthday, displayname, image,userId], (error, result) => {
             if (!error) {
                 resolve(result);
             } else {
