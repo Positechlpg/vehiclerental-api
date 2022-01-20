@@ -6,7 +6,7 @@ const server = express()
 //   res.send('Hello World')
 // })
 // setup mysql
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const db = mysql.createConnection({
   host: process.env.HOST,
   user: process.env.UNAME,
@@ -14,7 +14,7 @@ const db = mysql.createConnection({
   database: process.env.DB,
 });
 
-const port = 8000;
+const port = process.env.PORT || 8000;
 server.listen(port, () => {
   console.log(`server is running port ${port}`);
 })
