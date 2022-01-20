@@ -30,8 +30,8 @@ const storage = multer.diskStorage({
  };
 
  const upload = multer(obj).single('image'); // upload.single('file')
- exports.fileUpload = (req, res,next) => {
-     upload(req, res, function (error) {
+ exports.fileUpload = async (req, res,next) => {
+     await upload(req, res, function (error) {
          if (error) { //instanceof multer.MulterError
              res.status(500);
              if (error.code == 'LIMIT_FILE_SIZE') {

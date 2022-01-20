@@ -2,9 +2,28 @@ const db = require("../config/db");
 
 const getAllVehicle = (queryString) => {
     return new Promise((resolve, reject) => {
-        let sqlQuery = "SELECT * FROM vehicle";
+        let sqlQuery = "SELECT * FROM vehicle ";
+        
+        let firstWhere = true;
         if(queryString.search) {
-            sqlQuery += ` WHERE vehiclename like '%${queryString.search}%' OR category like '%${queryString.search}%' `
+            sqlQuery += `${firstWhere ? 'WHERE' : 'AND'} (vehiclename like '%${queryString.search}%' OR category like '%${queryString.search}%')`
+            firstWhere = false
+        }
+        if(queryString.location) {
+            sqlQuery += `${firstWhere ? 'WHERE' : 'AND'} location = '${queryString.location}' `
+            firstWhere = false
+        }
+        if(queryString.type) {
+            sqlQuery += `${firstWhere ? 'WHERE' : 'AND'} category = '${queryString.type}' `
+            firstWhere = false
+        }
+        if(queryString.status) {
+            sqlQuery += `${firstWhere ? 'WHERE' : 'AND'} status = '${queryString.status}' `
+            firstWhere = false
+        }
+        if(queryString.date) {
+            sqlQuery += `${firstWhere ? 'WHERE' : 'AND'} created_at = '${queryString.date}' `
+            firstWhere = false
         }
         if(queryString.sort && queryString.sortBy) {
             sqlQuery += ` ORDER BY ${queryString.sortBy} ${queryString.sort}`
