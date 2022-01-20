@@ -9,19 +9,19 @@ const getAllVehicle = (queryString) => {
             sqlQuery += `${firstWhere ? 'WHERE' : 'AND'} (vehiclename like '%${queryString.search}%' OR category like '%${queryString.search}%')`
             firstWhere = false
         }
-        if(queryString.location) {
+        if(queryString.location && queryString.location !== '') {
             sqlQuery += `${firstWhere ? 'WHERE' : 'AND'} location = '${queryString.location}' `
             firstWhere = false
         }
-        if(queryString.type) {
+        if(queryString.type && queryString.type !== '') {
             sqlQuery += `${firstWhere ? 'WHERE' : 'AND'} category = '${queryString.type}' `
             firstWhere = false
         }
-        if(queryString.status) {
+        if(queryString.status && queryString.status !== '') {
             sqlQuery += `${firstWhere ? 'WHERE' : 'AND'} status = '${queryString.status}' `
             firstWhere = false
         }
-        if(queryString.date) {
+        if(queryString.date && queryString.date !== '') {
             sqlQuery += `${firstWhere ? 'WHERE' : 'AND'} created_at = '${queryString.date}' `
             firstWhere = false
         }
