@@ -22,7 +22,7 @@ const getAllVehicle = (queryString) => {
             firstWhere = false
         }
         if(queryString.date && queryString.date !== '') {
-            sqlQuery += `${firstWhere ? 'WHERE' : 'AND'} created_at = '${queryString.date}' `
+            sqlQuery += `${firstWhere ? 'WHERE' : 'AND'} created_at BETWEEN '${queryString.date} 00:00:00' AND '${queryString.date} 23:59:59' `
             firstWhere = false
         }
         if(queryString.sort && queryString.sortBy) {
