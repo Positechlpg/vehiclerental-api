@@ -16,9 +16,9 @@ const getAllVehicle = async (queryString) => {
 }
 
 const createVehicle = async (body) => {
-    const { vehiclename, location, price, status, photo, stock, category } = body
+    const { vehiclename, location, price, status, photo, stock, category,description } = body
     try {
-        await vehicleModel.createVehicle(vehiclename, location, price, status, photo, stock, category)
+        await vehicleModel.createVehicle(vehiclename, location, price, status, photo, stock, category,description)
         const data = { vehiclename, location, price, status, photo, stock, category }
         return ServiceResponse(data, 200, "create succes")
     } catch (error) {
