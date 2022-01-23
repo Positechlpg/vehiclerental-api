@@ -4,7 +4,7 @@ const ServiceResponse = require('../helper/ServiceResponse')
 
 const getAllHistory = async (req, res) => {
     try {
-        const { userid } = req.params
+        const userid = req.userInfo.id
         httpResponse(res, await services.getAllHistory(userid,req.query));
     } catch (error) {
         return ServiceResponse(null, 500, 'Terjadi Error', error)
