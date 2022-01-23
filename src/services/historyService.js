@@ -13,8 +13,8 @@ const getAllHistory = async (queryString) => {
 
 const getHistoryByUserId = async (userId) => {
     try {
-        const vehicle = await historyModel.getHistoryByUserId(userId);
-        return ServiceResponse(vehicle, 200)
+        const data = await historyModel.getHistoryByUserId(userId);
+        return ServiceResponse(data, 200)
     } catch (error) {
         return ServiceResponse(null, 500, 'Terjadi Error', error)
     }
