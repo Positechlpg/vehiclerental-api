@@ -12,8 +12,8 @@ const getAllHistory = async (req, res) => {
 
 const getHistoryByUserId = async (req, res) => {
     try {
-        const { userId } = req.params
-        httpResponse(res, await services.getHistoryByUserId(userId))
+        const { userid } = req.params
+        httpResponse(res, await services.getHistoryByUserId(userid))
     } catch (error) {
         return ServiceResponse(null, 500, 'Terjadi Error', error)
     }

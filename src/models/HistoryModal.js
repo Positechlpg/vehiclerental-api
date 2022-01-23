@@ -34,6 +34,7 @@ const createHistory = (userId, vehicleId, quantityTotal, startDate, returnDate, 
     })
 }
 const getHistoryByUserId = (userId) => {
+    console.log(userId);
     return new Promise ((resolve,reject) =>{
         // const sqlQuery = `SELECT * FROM vehicle WHERE id = ${vehicleId} LIMIT 1`;
         db.query('SELECT * from history WHERE user_id = ?',[userId], (error, result) => {

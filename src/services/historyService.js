@@ -12,6 +12,7 @@ const getAllHistory = async (queryString) => {
 }
 
 const getHistoryByUserId = async (userId) => {
+    console.log(userId);
     try {
         const data = await historyModel.getHistoryByUserId(userId);
         return ServiceResponse(data, 200)
