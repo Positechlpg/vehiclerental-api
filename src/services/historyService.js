@@ -11,6 +11,15 @@ const getAllHistory = async (queryString) => {
     }
 }
 
+const getHistoryByUserId = async (userId) => {
+    try {
+        const vehicle = await historyModel.getHistoryByUserId(userId);
+        return ServiceResponse(vehicle, 200)
+    } catch (error) {
+        return ServiceResponse(null, 500, 'Terjadi Error', error)
+    }
+}
+
 const createHistory = async (body) => {
     const  {userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status,total_price }=body
 
@@ -51,4 +60,4 @@ const getPopulerVhicle = async (location) => {
     }
 }
 
-module.exports = {getAllHistory,createHistory, updateHistory,deleteHistory,getPopulerVhicle}
+module.exports = {getAllHistory,createHistory, updateHistory,deleteHistory,getPopulerVhicle,getHistoryByUserId}

@@ -33,6 +33,18 @@ const createHistory = (userId, vehicleId, quantityTotal, startDate, returnDate, 
 
     })
 }
+const getHistoryByUserId = (userId) => {
+    return new Promise ((resolve,reject) =>{
+        // const sqlQuery = `SELECT * FROM vehicle WHERE id = ${vehicleId} LIMIT 1`;
+        db.query('SELECT * FROM history WHERE user_id = ?',[userId], (error, result) => {
+            if (!error) {
+                resolve(result);
+            } else {
+                reject(error);
+            }
+        })
+    })
+}
 
 const updateHistory = (historyId,body) => {
     const { userId, vehicleId, quantityTotal, startDate, returnDate, bookingCode, paymentCode, status,total_price } = body 
@@ -75,4 +87,4 @@ const getPopulerVhicle = (location) => {
     })
 }
 
-module.exports = {getAllHistory,createHistory,updateHistory,deleteHistory,getPopulerVhicle}
+module.exports = {getAllHistory,createHistory,updateHistory,deleteHistory,getPopulerVhicle,getHistoryByUserId}

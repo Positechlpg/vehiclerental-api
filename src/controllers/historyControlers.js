@@ -10,6 +10,15 @@ const getAllHistory = async (req, res) => {
     }
 }
 
+const getHistoryByUserId = async (req, res) => {
+    try {
+        const { userId } = req.params
+        httpResponse(res, await services.getVehicleById(userId))
+    } catch (error) {
+        return ServiceResponse(null, 500, 'Terjadi Error', error)
+    }
+}
+
 const createHistory = async (req, res) => {
     try {
         httpResponse(res, await services.createHistory(req.body));
@@ -45,4 +54,4 @@ const getPopulerVhicle = async (req, res) => {
     }
 }
 
-module.exports = { getAllHistory, createHistory, updateHistory, deleteHistory, getPopulerVhicle }
+module.exports = { getAllHistory, createHistory, updateHistory, deleteHistory, getPopulerVhicle,getHistoryByUserId }
