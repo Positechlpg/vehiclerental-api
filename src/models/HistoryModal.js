@@ -1,10 +1,10 @@
 const db = require("../config/db");
 
-const getAllHistory = (queryString) => {
+const getAllHistory = (userid,queryString) => {
     return new Promise((resolve, reject) => {
         let sqlQuery = "SELECT history.*, vehicle.vehiclename, vehicle.category, vehicle.photo FROM history LEFT JOIN vehicle ON history.vehicle_id = vehicle.id";
         if(queryString.search) {
-            sqlQuery += ` WHERE vehicle.vehiclename like '%${queryString.search}%' OR vehicle.category like '%${queryString.search}%' `
+            sqlQuery += ` WHERE user_id = ${userid} AND vehicle.vehiclename like '%${queryString.search}%' OR vehicle.category like '%${queryString.search}%' `
         }
         if(queryString.sort && queryString.sortBy) {
             sqlQuery += ` ORDER BY ${queryString.sortBy} ${queryString.sort}`

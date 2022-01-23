@@ -2,9 +2,9 @@ const historyModel = require('./../models/HistoryModal')
 const ServiceResponse = require('./../helper/ServiceResponse');
 
 
-const getAllHistory = async (queryString) => {
+const getAllHistory = async (userid,queryString) => {
     try {
-        const user = await historyModel.getAllHistory(queryString);
+        const user = await historyModel.getAllHistory(userid,queryString);
         return ServiceResponse(user, 200)
     } catch (error) {
         return ServiceResponse(null, 500, 'Terjadi Error', error)

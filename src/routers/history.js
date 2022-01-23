@@ -5,8 +5,8 @@ const {checkToken} = require('../middleware/authentication')
 const {checkRoleAdmin} = require('../middleware/authorization')
 
 historyRouter
-        .get('/',checkToken, historyController.getAllHistory)
-        .get('/:userid',checkToken, historyController.getHistoryByUserId)
+        .get('/:userid',checkToken, historyController.getAllHistory)
+        .get('/historyuser/:userid',checkToken, historyController.getHistoryByUserId)
         .post('/createhistory',checkToken,historyController.createHistory)
         .put('/:historyId',checkToken,historyController.updateHistory)
         .delete('/:historyId',checkToken, checkRoleAdmin, historyController.deleteHistory)
