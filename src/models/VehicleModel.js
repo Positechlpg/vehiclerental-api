@@ -62,7 +62,7 @@ const createVehicle = ( vehiclename, location, price, status, photo, stock, cate
     return new Promise((resolve, reject) => {
         // const sqlQuery = `INSERT INTO vehicle (vehiclename,location,price,status,photo,stock,category) ` +
         // `VALUES ("${vehiclename}","${location}","${price}", "${status}","${photo}","${stock}","${category}")`;
-        db.query('INSERT INTO vehicle (vehiclename,location,price,status,photo,stock,category,description) VALUES (?,?,?,?,?,?,,?)',[vehiclename, location, price, status, photo, stock, category,description], (error, result) => {
+        db.query('INSERT INTO vehicle (vehiclename,location,price,status,photo,stock,category,description) VALUES (?,?,?,?,?,?,?,?)',[vehiclename, location, price, status, photo, stock, category,description], (error, result) => {
             if (!error) {
                 resolve(result)
             } else {
