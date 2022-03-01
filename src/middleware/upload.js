@@ -38,7 +38,7 @@ const storage = multer.diskStorage({
              if (error.code == 'LIMIT_FILE_SIZE') {
                  return httpResponse(res, {data:null, status:400, message:'File Size is too large. Allowed file size is 1Mb'} )
              } else {
-                 return httpResponse(res,{data:null, status:400, message:'Invalid file type. Only jpg, png image files are allowedd.'} )
+                 return httpResponse(res,{data:null, status:400, message:'General Error.', error} )
              }
          } 
              return next()
