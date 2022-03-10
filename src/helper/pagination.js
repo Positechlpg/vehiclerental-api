@@ -24,6 +24,7 @@ const pagination = (data, query, totalData,limit, offset,status, message = 'succ
       status: status || 500,
       err: error || null,
       data: data || null,
+      page: page || 1
     };
     return resultPrint
   }
