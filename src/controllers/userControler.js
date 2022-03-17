@@ -44,4 +44,33 @@ const deleteUser = async (req, res) => {
     }
 }
 
-module.exports = { getAllCustommer, getUser, updateUser, deleteUser };
+const editPassword = async (req, res) => {
+    try {
+        const userId = req.userInfo.id
+        const body = req.body;
+        console.log(req.params);
+        httpResponse(res, await services.editPassword(userId,body))
+    } catch (error) {
+        return ServiceResponse(null, 500, 'Terjadi Error', error)
+    }
+}
+
+const forgotPassword = async (req, res) => {
+    try {
+        const {email} = req.body;
+        httpResponse(res, await services.forgotPassword(email))
+    } catch (error) {
+        return ServiceResponse(null, 500, 'Terjadi Error', error)
+    }
+}
+const resetPassword = async (req, res) => {
+    try {
+        const {pin,password}=req.body
+        httpResponse(res, await services.resetPassword(pin,password))
+    } catch (error) {
+        return ServiceResponse(null, 500, 'Terjadi Error', error)
+    }
+}
+
+
+module.exports = { getAllCustommer, getUser, updateUser, deleteUser,editPassword,forgotPassword,resetPassword };
