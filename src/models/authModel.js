@@ -28,6 +28,19 @@ const cekEmail = (email) => {
     })
 }
 
+const updateTokenFcm = (tokenFcm,email) => {
+    return new Promise ((resolve,reject) =>{
+        // const sqlQuery = `UPDATE users SET username = "${username}", email= "${email}",phone = "${phone}",address = "${adress}",birthday = "${birthday}",displayname = "${displayname}", image = "${image}" WHERE id = ${userId};`;
+        db.query('UPDATE users SET token_fcm = ?  WHERE email = ?',[tokenFcm,email], (error, result) => {
+            if (!error) {
+                resolve(result);
+            } else {
+                reject(error);
+            }
+        })
+    })
+}
+
 const createUser = (username, email, password) => {
     return new Promise((resolve, reject) => {
         // const sqlQuery = `INSERT INTO users (username, email,password,phone,address,birthday,displayname,image) VALUES ("${username}","${email}","${password}","${phone}", "${adress}","${birthday}","${displayname}","${image}")`;
@@ -80,4 +93,4 @@ const deleteWhiteList = (token) => {
     })
 }
 
-module.exports = {login, createUser,cekWhiteListToken , insertWhiteList ,deleteWhiteList,cekEmail}
+module.exports = {login, createUser,cekWhiteListToken , insertWhiteList ,deleteWhiteList,cekEmail,updateTokenFcm}

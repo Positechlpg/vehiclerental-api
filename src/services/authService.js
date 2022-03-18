@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const login = async (body)=>{
-    const { email, password } = body;
+    const { email, password, tokenFcm } = body;
     
     try {
         const result = await authModel.login(email)
@@ -21,6 +21,10 @@ const login = async (body)=>{
           };
           const token = jwt.sign(payload, process.env.SECRET_KEY, jwtOptions);
           await authModel.insertWhiteList(token)
+          console.log(tokenFcm);
+          if(tokenFcm){
+              await authModel.updateTokenFcm(tokenFcm,email)
+          }
           return ServiceResponse({user:payload, token},200, "login success")
     } catch (error) {
         return ServiceResponse(null, 500, 'Terjadi Error', error)
