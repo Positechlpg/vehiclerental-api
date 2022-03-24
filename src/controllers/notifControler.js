@@ -2,6 +2,7 @@
 // const response = require("../helpers/response");
 const admin = require("firebase-admin");
 const key = require("../../private/vehicle-c0086-firebase-adminsdk-ct1ed-568cbdcc47.json");
+const { getUser } = require("../models/UserModel");
 // const ServiceResponse = require("../helper/ServiceResponse");
 // const models = require("../models/firebase");
 
@@ -15,8 +16,11 @@ const notifSend = async (req,res) => {
     const {body} = req
     console.log(body);
     try {
+         const result = await getUser(body.id)
+         if (result.length===0) return res.status(404).json({pesan:"id tidak ditemukan"})
+         const token = result[0].token_fcm
         await message.send({
-            token: body.receiver,
+            token: token,
             notification: {
                 title: body.title,
                 body: body.message,
@@ -24,6 +28,7 @@ const notifSend = async (req,res) => {
         })
         return res.status(200).json({
                   pesan: "notification sent",
+                  token
                 });
     } catch (error) {
         return res.status(500).json({

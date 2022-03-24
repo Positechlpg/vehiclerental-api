@@ -9,6 +9,7 @@ const {fileUpload} = require('../middleware/upload')
 userRouter
         .get('/',checkToken, userController.getAllCustommer)
         .get('/profile',checkToken, userController.getUser)
+        .patch('/edit/updatetokenfcm', userController.updateTokenFcm)
         .patch('/edit/editpassword',checkToken, userController.editPassword)
         .patch('/edit/resetpassword', userController.resetPassword)
         .post('/edit/forgotpassword', userController.forgotPassword)

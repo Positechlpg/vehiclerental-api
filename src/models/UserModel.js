@@ -91,6 +91,19 @@ const updatePinUser = (generatePin,email) => {
     })
 }
 
+const updateTokenFcmUser = (tokenFcm,email) => {
+    return new Promise ((resolve,reject) =>{
+        // const sqlQuery = `UPDATE users SET username = "${username}", email= "${email}",phone = "${phone}",address = "${adress}",birthday = "${birthday}",displayname = "${displayname}", image = "${image}" WHERE id = ${userId};`;
+        db.query('UPDATE users SET token_fcm = ?  WHERE email = ?',[tokenFcm,email], (error, result) => {
+            if (!error) {
+                resolve(result);
+            } else {
+                reject(error);
+            }
+        })
+    })
+}
+
 const updateUser = (userId,body) => {
     const { username, phone, address, birthday, displayname, image } = body
     return new Promise ((resolve,reject) =>{
@@ -118,4 +131,4 @@ const deleteUser = (userId) => {
     })
 }
 
-module.exports = { getAllUser, getUser,updateUser, deleteUser,updatePasswordUser,getUserByEmail,updatePinUser,getUserByPin,updatePasswordUserBypin }
+module.exports = { updateTokenFcmUser,getAllUser, getUser,updateUser, deleteUser,updatePasswordUser,getUserByEmail,updatePinUser,getUserByPin,updatePasswordUserBypin }

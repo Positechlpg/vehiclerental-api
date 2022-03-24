@@ -108,4 +108,16 @@ const resetPassword = async (pin,password) =>{
     }
 }
 
-module.exports = { getAllCustommer, getUser,updateUser,deleteUser,editPassword,forgotPassword,resetPassword };
+const updateTokenFcm = async (tokenFcm,email) =>{
+    try {
+        const result = await UserModel.getUserByEmail(email);
+
+        if(result.length===0) return ServiceResponse(null,404,"email tidak ada")
+        const update = await UserModel.updateTokenFcmUser(tokenFcm,email);
+        return ServiceResponse(update, 200,"success update token fcm")
+    } catch (error) {
+        return ServiceResponse(null, 500, 'Terjadi Error', error)
+    }
+}
+
+module.exports = { getAllCustommer, getUser,updateUser,deleteUser,editPassword,forgotPassword,resetPassword,updateTokenFcm };

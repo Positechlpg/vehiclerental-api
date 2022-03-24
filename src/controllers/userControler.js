@@ -55,6 +55,16 @@ const editPassword = async (req, res) => {
     }
 }
 
+const updateTokenFcm = async (req, res) => {
+    try {
+        const {tokenFcm,email} = req.body;
+        console.log(req.params);
+        httpResponse(res, await services.updateTokenFcm(tokenFcm,email))
+    } catch (error) {
+        return ServiceResponse(null, 500, 'Terjadi Error', error)
+    }
+}
+
 const forgotPassword = async (req, res) => {
     try {
         const {email} = req.body;
@@ -73,4 +83,4 @@ const resetPassword = async (req, res) => {
 }
 
 
-module.exports = { getAllCustommer, getUser, updateUser, deleteUser,editPassword,forgotPassword,resetPassword };
+module.exports = { getAllCustommer, getUser, updateUser, deleteUser,editPassword,forgotPassword,resetPassword,updateTokenFcm };
