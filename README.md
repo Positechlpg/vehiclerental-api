@@ -1,4 +1,4 @@
-# Violet Coffee Shop - Backend
+# Vehicle Rental - Backend
 
 <br/>
 
@@ -6,14 +6,12 @@
 	<img height="200" src="./assets/logo.jpg" alt="VioletCoffeeShop">
 
 [![express](https://img.shields.io/npm/v/express?label=express)](https://www.npmjs.com/package/express)
-[![sequelize](https://img.shields.io/npm/v/sequelize?label=sequelize)](https://www.npmjs.com/package/sequelize)
 [![mysql](https://img.shields.io/npm/v/mysql?label=mysql)](https://www.npmjs.com/package/mysql)
 [![jsonwebtoken](https://img.shields.io/npm/v/jsonwebtoken?label=jsonwebtoken)](https://www.npmjs.com/package/jsonwebtoken)
 [![bcrypt](https://img.shields.io/npm/v/bcrypt?label=bcrypt)](https://www.npmjs.com/package/bcrypt)
 [![cors](https://img.shields.io/npm/v/cors?label=cors)](https://www.npmjs.com/package/cors)
 [![multer](https://img.shields.io/npm/v/multer?label=multer)](https://www.npmjs.com/package/multer)
 [![dayjs](https://img.shields.io/npm/v/dayjs?label=dayjs)](https://www.npmjs.com/package/dayjs)
-[![midtrans-client](https://img.shields.io/npm/v/midtrans-client?label=midtrans-client)](https://www.npmjs.com/package/midtrans-client)
 [![nodemailer](https://img.shields.io/npm/v/nodemailer?label=nodemailer)](https://www.npmjs.com/package/nodemailer)
 
 <br/>
@@ -22,7 +20,7 @@
 
 <br/>
 
-Violet coffee shop is a web application that can make it easier for customer to order food and beverages from coffee shop. Customer can simply register, login, see products, order, see order history, edit their profile, etc.
+vehicle rental is a platform where vehicle owners can rent their vehicles and users can rent vehicles at the nearest location
 
 ## Contents
 
@@ -39,22 +37,18 @@ Violet coffee shop is a web application that can make it easier for customer to 
 - Login
 - Register
 - Forgot Password
-- Search product
-- Product's detail
-- Edit profile
+- Search Vehicle
+- Vehicle detail
 
 ### Customer:
 
-- Order
-- Order history
+- Reservation
+- Reservation history
 
 ### Admin:
 
-- Add product
-- Edit product
-- Add promo
-- Edit promo
-- Dashboard Admin
+- Add Vehicle
+- Edit Vehicle
 
 ## How to Run the Application
 
