@@ -3,7 +3,7 @@
 <br/>
 
 <div align="center">
-	<img height="200" src="./assets/icon4.png" alt="VioletCoffeeShop">
+	<img height="200" src="./assets/logo.jpg" alt="VioletCoffeeShop">
 
 [![express](https://img.shields.io/npm/v/express?label=express)](https://www.npmjs.com/package/express)
 [![sequelize](https://img.shields.io/npm/v/sequelize?label=sequelize)](https://www.npmjs.com/package/sequelize)
