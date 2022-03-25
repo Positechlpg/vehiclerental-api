@@ -78,12 +78,10 @@ You may also see any lint errors in the console.
 
 ## Deployment
 
-<https://coffee-shop-back-end.herokuapp.com/>
+<https://vehicle-rental-be.herokuapp.com/>
 
 ## Related Projects
 
-`Violet Coffee Shop - Frontend` <https://github.com/anshoriacc/violet-coffee-shop-frontend>
+`Vehicle Rental  - Frontend` <https://github.com/Trisumanzaya93/vehicle-rental-react>
 
-## Contributors
 
-This project created with ReactJS by [Achmad Anshori](https://github.com/anshoriacc), [Fahrul Muhammad](https://github.com/fahrul-muhammad), [Tri Sumanzaya](https://github.com/Trisumanzaya93), [Fajar Pratama Vhishinggah](https://github.com/ikehikeh151), [Hazpi Nurafgan](https://github.com/Hazgn).
