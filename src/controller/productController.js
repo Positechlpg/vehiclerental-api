@@ -1,52 +1,112 @@
-const get = function(req, res) {
-    let data = {
-        "id": 1,
-        "name": "Leanne Graham",
-        "username": "Bret",
-        "email": "Sincere@april.biz",
-        "address":
-        {
-                "street": "Kulas Light",
-                "suite": "Apt. 556",
-                "city": "Gwenborough",
-                "zipcode": "92998-3874",
-        },
-        "phone": "1-770-736-8031 x56442",
-        "website": "hildegard.org",
-        "array": [
-            {
-                "data": "a"
-            },
-            {
-                "data": "1"
-            }
-        ]
+const ProductModel = require('../models/productModel');
+
+const post = async function(req, res) {
+    try {
+        
+        const body = req.body;
+
+        const input = {
+            product_name: body.product_name,
+            stock: body.stock,
+            price: body.price,
+            image: body.image,
         };
+        const data = await ProductModel.create(input);
+        
+        return  res.send(data)
+    } catch (error) {
+        console.log(error);
+    }
 
-        data.name = req.query.name
-
-    res.send(data)
 };
 
-const post = function(req, res) {
+const get = async function(req, res) {
+    try {
 
-    const body = req.body;
+        const data = await ProductModel.findAll();
+        return res.send(data)
+    } catch (error) {
+        console.log(error);
+    }
+};
 
-    let data = {
-        id: 1,
-        name: body.name,
-        username: "Bret",
-        email: "Sincere@april.biz",
-        address: body.alamat,
-        phone: "1-770-736-8031 x56442",
-        website: "hildegard.org",
+const put = async function(req, res) {
+    try {
+        
+        const id = req.params.id;
+        const body = req.body;
+
+        const input = {
+            product_name: body.product_name,
+            stock: body.stock,
+            price: body.price,
+            image: body.image,
+        };
+
+        await ProductModel.update(input, {
+            where: {
+                id: id,
+            }
+        });
+
+        const data = await ProductModel.findOne({
+            where: {
+                id: id
+            }
+        });
+        
+        return  res.send(data)
+    } catch (error) {
+        console.log(error);
+    }
+
+};
+
+const destroy = async function(req, res) {
+    try {
+        const id = req.params.id;
+
+        await ProductModel.destroy({
+            where: {
+                id: id,
+            }
+        })
+        return res.send({
+            message: 'delete success'
+        })
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
+const getById = async function(req, res) {
+    try {
+        const id = req.params.id;
+
+        const data = await ProductModel.findOne({
+            where: {
+                id: id,
+            }
+        });
+
+        if (data === null) {
+            return res.send({
+                message: 'Product Not Found'
+            })
+        } else {
+            return res.send(data)
         }
-
-    res.send(data)
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 
 module.exports = {
     get,
-    post
+    post,
+    put,
+    destroy,
+    getById
 };
