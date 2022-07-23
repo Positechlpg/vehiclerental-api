@@ -15,5 +15,5 @@ server.use(cors(corsOptions))
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(logger)
-server.use("/api", routers)
+server.use("", routers)
 module.exports = server
